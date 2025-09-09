@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Illumina Constellation — constellation.plnt.earth</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='black'/%3E%3Ccircle cx='26' cy='24' r='16' fill='%230ff'/%3E%3Ccircle cx='38' cy='36' r='22' fill='none' stroke='%230ff' stroke-width='3' stroke-dasharray='2 6'/%3E%3C/svg%3E" />
+  <style>
+    :root{
+      --bg: #0a0a0f;
+      --panel: #101018;
+      --ink: #e7f6ff;
+      --muted: #98a2b3;
+      --neon: #00f0ff;
+      --neon2:#ff3df2;
+      --honey:#ffd166;
+      --green:#3dff9b;
+      --danger:#ff6b6b;
+      --card: #0e0e14;
+      --shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 60px rgba(0,240,255,.05);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink); background: radial-gradient(1200px 800px at 70% -10%, rgba(0,240,255,.08), transparent), radial-gradient(800px 600px at -10% 110%, rgba(255,61,242,.06), transparent), var(--bg);
+      overflow-x:hidden;
+    }
+    a{color:var(--neon)}
+    .shell{max-width:1100px; margin:0 auto; padding:24px 20px 56px}
+    header{position:sticky; top:0; z-index:10; background:linear-gradient(180deg, rgba(10,10,15,.95), rgba(10,10,15,.80) 70%, transparent); backdrop-filter: blur(6px)}
+    .nav{display:flex; gap:10px; align-items:center; padding:12px 20px}
+    .brand{font-weight:800; letter-spacing:.5px}
+    .brand .dot{color:var(--neon)}
+    .spacer{flex:1}
+    .tabs{display:flex; flex-wrap:wrap; gap:8px}
+    .tab{border:1px solid rgba(0,240,255,.35); color:var(--ink); background:rgba(0,240,255,.06); padding:10px 14px; border-radius:999px; cursor:pointer; transition: .25s ease; user-select:none}
+    .tab:hover{transform:translateY(-1px); box-shadow:0 6px 18px rgba(0,240,255,.15)}
+    .tab[aria-selected="true"]{background:rgba(0,240,255,.14); border-color:var(--neon); box-shadow:0 0 0 2px rgba(0,240,255,.2) inset}
+
+    .section{display:none; padding:16px 20px}
+    .section.active{display:block}
+    .hero{display:grid; gap:18px; grid-template-columns:1.1fr .9fr; align-items:center}
+    .hero h1{font-size: clamp(28px, 5vw, 52px); line-height:1.05; margin:0}
+    .hero p{color:var(--muted); margin:.5rem 0 0}
+    .glowcard{background:linear-gradient(180deg, rgba(16,16,24,.8), rgba(10,10,15,.6)); border:1px solid rgba(0,240,255,.2); border-radius:24px; padding:18px; box-shadow:var(--shadow)}
+    .map{position:relative; aspect-ratio:1.5/1; border-radius:24px; overflow:hidden; background:radial-gradient(60% 60% at 50% 45%, rgba(0,240,255,.08), transparent), radial-gradient(40% 40% at 70% 65%, rgba(255,61,242,.08), transparent), #0b0b13; border:1px solid rgba(0,240,255,.15)}
+    .orbit{position:absolute; inset:10% 12%; border:1px dashed rgba(0,240,255,.25); border-radius:50%}
+    .orbit:nth-child(2){inset:16% 18%}
+    .orbit:nth-child(3){inset:23% 25%}
+    .center-hex{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:230px; height:200px; clip-path:polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0 50%); background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06)}
+
+    .node{position:absolute; display:grid; place-items:center; gap:6px; min-width:110px; text-align:center; padding:10px 12px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.02); border-radius:14px; box-shadow:var(--shadow)}
+    .node .name{font-weight:700}
+    .node .tag{font-size:12px; color:var(--muted)}
+
+    .n-sabrina{left:calc(50% - 130px); top:calc(50% - 98px); border-color:rgba(255,209,102,.5)}
+    .n-janet{left:calc(50% + 20px); top:calc(50% - 98px)}
+    .n-eminem{left:calc(50% + 96px); top:calc(50% - 10px); border-color:rgba(255,107,107,.5)}
+    .n-emma{left:calc(50% + 20px); top:calc(50% + 78px)}
+    .n-doechii{left:calc(50% - 130px); top:calc(50% + 78px)}
+    .n-h2g{left:calc(50% - 206px); top:calc(50% - 10px)}
+
+    .n-aphex{left:18%; top:25%; border-color:rgba(0,240,255,.6)}
+    .n-bon{right:14%; bottom:18%; border-color:rgba(255,61,242,.45)}
+    .n-mosq{right:20%; top:20%; border-color:rgba(61,255,155,.45)}
+
+    .grid{display:grid; gap:16px; grid-template-columns:repeat(12,1fr)}
+    .col-6{grid-column:span 6}
+    .col-4{grid-column:span 4}
+    .col-12{grid-column:span 12}
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .col-6,.col-4{grid-column:span 12}
+      .map{aspect-ratio:1/1}
+    }
+
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:20px; padding:18px; box-shadow:var(--shadow)}
+    .card h3{margin:.2rem 0 .6rem; font-size:1.05rem}
+    .chip{display:inline-block; padding:4px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.04); font-size:12px; color:var(--muted)}
+    .k{color:var(--neon)}
+    .m{color:var(--neon2)}
+    .h{color:var(--honey)}
+
+    .head{display:flex; align-items:center; gap:10px; margin:8px 0 14px}
+    .head .dot{width:10px; height:10px; border-radius:50%; background:var(--neon); box-shadow:0 0 14px var(--neon)}
+
+    table{width:100%; border-collapse:separate; border-spacing:0}
+    th,td{padding:10px 12px; border-bottom:1px solid rgba(255,255,255,.08)}
+    th{font-weight:700; text-align:left}
+    tr:hover td{background:rgba(255,255,255,.03)}
+
+    footer{margin-top:36px; color:var(--muted); font-size:13px; text-align:center; opacity:.8}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav shell" role="tablist" aria-label="PLNT Earth sections">
+      <div class="brand">PLNT<span class="dot">●</span>Earth</div>
+      <div class="spacer"></div>
+      <div class="tabs">
+        <button class="tab" data-target="home" role="tab" aria-selected="true">Home</button>
+        <button class="tab" data-target="pantheon" role="tab">Pantheon</button>
+        <button class="tab" data-target="watchmen" role="tab">Watchmen</button>
+        <button class="tab" data-target="cycles" role="tab">Cycles</button>
+        <button class="tab" data-target="seeds" role="tab">Seeds / Recipes</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section id="home" class="section active" aria-labelledby="tab-home">
+      <div class="hero">
+        <div>
+          <h1>Illumina Constellation</h1>
+          <p>Core hex at center. Watchmen orbit outside. Spiral timeline extends through cycles. Roots below hold seeds and recipes. All neon, all yours.</p>
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+            <span class="chip">Neon mode</span>
+            <span class="chip">Pepper black</span>
+            <span class="chip">Single‑file HTML</span>
+          </div>
+        </div>
+        <div class="glowcard map" aria-label="constellation map">
+          <div class="orbit"></div>
+          <div class="orbit"></div>
+          <div class="orbit"></div>
+          <div class="center-hex" aria-hidden="true"></div>
+          <div class="node n-sabrina"><div class="name">Sabrina</div><div class="tag">🍯 Honey / Taste</div></div>
+          <div class="node n-janet"><div class="name">Janet Planet</div><div class="tag">🌙 STEAM / Teacher</div></div>
+          <div class="node n-eminem"><div class="name">Eminem</div><div class="tag">⚡ Victory Song</div></div>
+          <div class="node n-emma"><div class="name">Emma Stone</div><div class="tag">☀️ Identity Flare</div></div>
+          <div class="node n-doechii"><div class="name">Doechii</div><div class="tag">🔥 Trickster / Chaos</div></div>
+          <div class="node n-h2g"><div class="name">Hot To Go!</div><div class="tag">🐝 Collective Joy</div></div>
+          <div class="node n-aphex"><div class="name">Aphex Twin</div><div class="tag">Disruptor • Alien</div></div>
+          <div class="node n-bon"><div class="name">Bon Iver</div><div class="tag">Healer • Winter</div></div>
+          <div class="node n-mosq"><div class="name">Mosquito</div><div class="tag">Micro‑trickster • Ecology</div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">Made with ☀️🐝🌙 — constellation.plnt.earth</footer>
+
+  <script>
+    (function(){
+      var tabs = document.querySelectorAll('.tab');
+      var sections = document.querySelectorAll('.section');
+      function show(id){
+        sections.forEach(function(s){ s.classList.toggle('active', s.id === id); });
+        tabs.forEach(function(t){ t.setAttribute('aria-selected', t.dataset.target === id ? 'true' : 'false'); });
+      }
+      tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.target); }); });
+      function syncHash(){
+        var id = location.hash.replace('#','') || 'home';
+        if(document.getElementById(id)) show(id);
+      }
+      window.addEventListener('hashchange', syncHash);
+      syncHash();
+    })();
+  </script>
+</body>
+</html>
