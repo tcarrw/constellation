@@ -3,301 +3,981 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Illumina Constellation — constellation.plnt.earth</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='black'/%3E%3Ccircle cx='26' cy='24' r='16' fill='%230ff'/%3E%3Ccircle cx='38' cy='36' r='22' fill='none' stroke='%230ff' stroke-width='3' stroke-dasharray='2 6'/%3E%3C/svg%3E" />
-  <meta name="description" content="Interactive map of the Illumina pantheon + watchmen. Works at constellation.plnt.earth and jar.plnt.earth/constellation.">
+  <title>🌕 Illumina Constellation — Jar</title>
+  <meta name="description" content="Jar calendar with Watchmen overlays wired to Moon Notes, plus links to tunes, interludes, archive/seeds, build docs, and science (1/7)."/>
+
+  <!-- Editable link map: set your real URLs here -->
+  <script id="jar-links-config" type="application/json">
+  {
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+},
+    "archive": "/archive/",
+    "seeds": "/reference/seeds/",
+    "build": "/build/",
+    "science_1_7": "/science/time-1-7/"
+  }
+  </script>
+
   <style>
-    :root{
-      --bg: #05060a; --panel:#0b0c12; --ink:#e7f6ff; --muted:#98a2b3; --neon:#00f0ff; --neon2:#ff3df2; --honey:#ffd166; --green:#3dff9b; --danger:#ff6b6b; --card:#0c0d14; --shadow:0 10px 30px rgba(0,0,0,.35), 0 0 60px rgba(0,240,255,.05);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0; font:16px/1.55 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"; color:var(--ink); background:var(--bg); overflow-x:hidden; perspective:1200px}
-    a{color:var(--neon); text-decoration:none}
-    .shell{max-width:1200px; margin:0 auto; padding:24px 20px 56px}
-    header{position:sticky; top:0; z-index:20; background:linear-gradient(180deg, rgba(5,6,10,.95), rgba(5,6,10,.82) 70%, transparent); backdrop-filter: blur(6px)}
-    .nav{display:flex; gap:10px; align-items:center; padding:12px 20px}
-    .brand{font-weight:800; letter-spacing:.5px}
-    .brand .dot{color:var(--neon)}
-    .spacer{flex:1}
-    .tabs{display:flex; flex-wrap:wrap; gap:8px}
-    .tab{border:1px solid rgba(0,240,255,.35); color:var(--ink); background:rgba(0,240,255,.06); padding:10px 14px; border-radius:999px; cursor:pointer; transition: transform .25s ease, box-shadow .25s ease; user-select:none}
-    .tab:hover{transform:translateY(-1px); box-shadow:0 6px 18px rgba(0,240,255,.15)}
-    .tab[aria-selected="true"]{background:rgba(0,240,255,.14); border-color:var(--neon); box-shadow:0 0 0 2px rgba(0,240,255,.2) inset}
+    body{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    header{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    .brand{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    .nav{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    .btn{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    .btn:hover{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
 
-    .section{display:none; padding:16px 20px}
-    .section.active{display:block}
+    h1{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    table{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    th,td{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    th{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    tr:nth-child(even){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    .anchor{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    .watchmen{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    .aphex{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    .bon{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    .mosq{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    caption{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
 
-    /* Parallax space background */
-    .space{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden}
-    .layer{position:absolute; inset:-10%; will-change:transform}
-    .stars1{background-image: radial-gradient(rgba(255,255,255,.35) 1px, transparent 1px), radial-gradient(rgba(255,255,255,.15) 1px, transparent 1px); background-size:3px 3px, 2px 2px; background-position:0 0, 1px 1px; opacity:.35}
-    .stars2{background-image: radial-gradient(rgba(0,240,255,.35) 1px, transparent 1px), radial-gradient(rgba(255,61,242,.25) 1px, transparent 1px); background-size:6px 6px, 8px 8px; background-position:0 0, 2px 3px; opacity:.25}
-    .nebula{background: radial-gradient(60% 40% at 70% 30%, rgba(0,240,255,.12), transparent), radial-gradient(50% 50% at 20% 70%, rgba(255,61,242,.10), transparent)}
+    .daychips{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    .chip{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    .chip:hover{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
 
-    /* Hero */
-    .hero{position:relative; z-index:1; display:grid; gap:22px; grid-template-columns:1.1fr .9fr; align-items:center}
-    .hero h1{font-size: clamp(32px, 6vw, 64px); line-height:1.05; margin:0}
-    .hero p{color:var(--muted); margin:.5rem 0 0}
-    .glowcard{background:linear-gradient(180deg, rgba(16,16,24,.8), rgba(10,10,15,.6)); border:1px solid rgba(0,240,255,.2); border-radius:24px; padding:18px; box-shadow:var(--shadow)}
-
-    /* Constellation map (bigger, immersive) */
-    .map{position:relative; height:min(64vh, 720px); min-height:420px; border-radius:24px; overflow:hidden; background:radial-gradient(60% 60% at 50% 45%, rgba(0,240,255,.08), transparent), radial-gradient(40% 40% at 70% 65%, rgba(255,61,242,.08), transparent), #0b0b13; border:1px solid rgba(0,240,255,.15); transform-style:preserve-3d}
-    .map-tilt{position:absolute; inset:0; transform-style:preserve-3d}
-    .orbit{position:absolute; inset:8% 10%; border:1px dashed rgba(0,240,255,.23); border-radius:50%; animation: orbit-spin 120s linear infinite}
-    .orbit:nth-child(2){inset:14% 16%; animation-duration:180s}
-    .orbit:nth-child(3){inset:21% 23%; animation-duration:240s}
-    @keyframes orbit-spin{to{transform:rotate(360deg)}}
-    .center-hex{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%) translateZ(40px); width:260px; height:220px; clip-path:polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0 50%); background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06)}
-
-    .node{position:absolute; display:grid; place-items:center; gap:6px; min-width:120px; text-align:center; padding:12px 14px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.02); border-radius:14px; box-shadow:var(--shadow); transform: translateZ(60px); transition: transform .2s ease, box-shadow .2s ease}
-    .node .name{font-weight:800}
-    .node .tag{font-size:12px; color:var(--muted)}
-    .node:hover{transform: translateZ(90px) scale(1.03)}
-
-    .n-sabrina{left:calc(50% - 150px); top:calc(50% - 118px); border-color:rgba(255,209,102,.5)}
-    .n-janet{left:calc(50% + 20px); top:calc(50% - 118px)}
-    .n-eminem{left:calc(50% + 116px); top:calc(50% - 10px); border-color:rgba(255,107,107,.5)}
-    .n-emma{left:calc(50% + 20px); top:calc(50% + 98px)}
-    .n-doechii{left:calc(50% - 150px); top:calc(50% + 98px)}
-    .n-h2g{left:calc(50% - 236px); top:calc(50% - 10px)}
-
-    .n-aphex{left:14%; top:18%; border-color:rgba(0,240,255,.6)}
-    .n-bon{right:10%; bottom:12%; border-color:rgba(255,61,242,.45)}
-    .n-mosq{right:16%; top:12%; border-color:rgba(61,255,155,.45)}
-
-    @keyframes floaty{0%{transform:translateZ(60px) translateY(0)}50%{transform:translateZ(70px) translateY(-6px)}100%{transform:translateZ(60px) translateY(0)}}
-    .node{animation: floaty 8s ease-in-out infinite}
-    .n-aphex{animation-duration:9s}
-    .n-bon{animation-duration:10s}
-    .n-mosq{animation-duration:7.5s}
-
-    .grid{display:grid; gap:16px; grid-template-columns:repeat(12,1fr)}
-    .col-6{grid-column:span 6}
-    .col-4{grid-column:span 4}
-    .col-12{grid-column:span 12}
-    @media (max-width:1000px){.hero{grid-template-columns:1fr}.col-6,.col-4{grid-column:span 12}.map{height:58vh}}
-
-    .card{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:20px; padding:18px; box-shadow:var(--shadow)}
-    .card h3{margin:.2rem 0 .6rem; font-size:1.05rem}
-    .chip{display:inline-block; padding:4px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.04); font-size:12px; color:var(--muted)}
-    .k{color:var(--neon)} .m{color:var(--neon2)} .h{color:var(--honey)}
-
-    .head{display:flex; align-items:center; gap:10px; margin:8px 0 14px}
-    .head .dot{width:10px; height:10px; border-radius:50%; background:var(--neon); box-shadow:0 0 14px var(--neon)}
-
-    table{width:100%; border-collapse:separate; border-spacing:0}
-    th,td{padding:10px 12px; border-bottom:1px solid rgba(255,255,255,.08)}
-    th{font-weight:700; text-align:left}
-    tr:hover td{background:rgba(255,255,255,.03)}
-
-    footer{margin-top:36px; color:var(--muted); font-size:13px; text-align:center; opacity:.8}
-
-    /* Focus/scroll pulse for linked cards */
-    .pulse{box-shadow:0 0 0 2px rgba(0,240,255,.35) inset, 0 0 0 0 rgba(0,240,255,.6); animation:pulse 1.2s ease-out 2}
-    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,240,255,.6)}100%{box-shadow:0 0 0 14px rgba(0,240,255,0)}}
-
-    @media (prefers-reduced-motion: reduce){ .orbit{animation:none} .node{animation:none} }
+    section.notes{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    section.notes h2{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    .row{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    label{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    input,select,textarea{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    textarea{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    .controls{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    .controls .btn{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    #savedNotes{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    .pulse{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+    @keyframes pulse{
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}}
   </style>
 </head>
 <body>
-  <!-- Parallax background layers -->
-  <div class="space" aria-hidden="true">
-    <div class="layer stars1" data-depth="0.08"></div>
-    <div class="layer stars2" data-depth="0.14"></div>
-    <div class="layer nebula" data-depth="0.22"></div>
-  </div>
-
   <header>
-    <div class="nav shell" role="tablist" aria-label="PLNT Earth sections">
-      <div class="brand">PLNT<span class="dot">●</span>Earth</div>
-      <div class="spacer"></div>
-      <div class="tabs">
-        <button class="tab" data-target="home" role="tab" aria-selected="true">Home</button>
-        <button class="tab" data-target="pantheon" role="tab">Pantheon</button>
-        <button class="tab" data-target="watchmen" role="tab">Watchmen</button>
-        <button class="tab" data-target="cycles" role="tab">Cycles</button>
-        <button class="tab" data-target="seeds" role="tab">Seeds / Recipes</button>
-      </div>
-    </div>
+    <div class="brand">Jar · Constellation</div>
+    <nav class="nav">
+      <a class="btn" id="navJar">Jar Index</a>
+      <a class="btn" id="navTunes">Tunes</a>
+      <a class="btn" id="navArchive">Archive</a>
+      <a class="btn" id="navSeeds">Seeds</a>
+      <a class="btn" id="navBuild">Build</a>
+      <a class="btn" id="navScience">Science 1/7</a>
+    </nav>
   </header>
 
-  <main class="shell" style="position:relative; z-index:1">
-    <!-- Home -->
-    <section id="home" class="section active" aria-labelledby="tab-home">
-      <div class="hero">
-        <div>
-          <h1>Illumina Constellation</h1>
-          <p>Core hex at center. Watchmen orbit outside. Spiral timeline extends through cycles. Roots below hold seeds and recipes. Works on <strong>constellation.plnt.earth</strong> and <strong>jar.plnt.earth/constellation</strong>.</p>
-          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
-            <span class="chip">Parallax space</span>
-            <span class="chip">Animated orbits</span>
-            <span class="chip">Responsive</span>
-          </div>
-        </div>
-        <div class="glowcard map" aria-label="constellation map" id="map">
-          <div class="map-tilt" id="mapTilt">
-            <div class="orbit"></div>
-            <div class="orbit"></div>
-            <div class="orbit"></div>
-            <div class="center-hex" aria-hidden="true"></div>
-            <!-- Core six → anchor to Pantheon cards -->
-            <a class="node n-sabrina" href="#pantheon-sabrina"><div class="name">Sabrina</div><div class="tag">🍯 Honey / Taste</div></a>
-            <a class="node n-janet" href="#pantheon-janet"><div class="name">Janet Planet</div><div class="tag">🌙 STEAM / Teacher</div></a>
-            <a class="node n-eminem" href="#pantheon-eminem"><div class="name">Eminem</div><div class="tag">⚡ Victory Song</div></a>
-            <a class="node n-emma" href="#pantheon-emma"><div class="name">Emma Stone</div><div class="tag">☀️ Identity Flare</div></a>
-            <a class="node n-doechii" href="#pantheon-doechii"><div class="name">Doechii</div><div class="tag">🔥 Trickster / Chaos</div></a>
-            <a class="node n-h2g" href="#pantheon-h2g"><div class="name">Hot To Go!</div><div class="tag">🐝 Collective Joy</div></a>
-            <!-- Watchmen ring (still jump to Watchmen section for now) -->
-            <a class="node n-aphex" href="#watchmen-aphex"><div class="name">Aphex Twin</div><div class="tag">Disruptor • Alien</div></a>
-            <a class="node n-bon" href="#watchmen-bon"><div class="name">Bon Iver</div><div class="tag">Healer • Winter</div></a>
-            <a class="node n-mosq" href="#watchmen-mosquito"><div class="name">Mosquito</div><div class="tag">Micro‑trickster • Ecology</div></a>
-          </div>
-        </div>
-      </div>
+  <h1>🌕 Illumina 1 — Watchmen Overlay Calendar</h1>
+  <table>
+    <caption>Nov 5 – Dec 17, 2025</caption>
+    <thead>
+      <tr><th>Week</th><th>Days</th><th>Theme</th><th>Anchor</th><th>Watchmen Overlay</th></tr>
+    </thead>
+    <tbody>
+      <tr id="day1">
+        <td>1</td>
+        <td>
+          Nov 5–11<br>(Days 1–7)
+          <div class="daychips" data-range="1-7"></div>
+        </td>
+        <td>Honey ignition</td>
+        <td class="anchor"><a class="bon" data-interlude="sabrina">🍯 Sabrina</a></td>
+        <td></td>
+      </tr>
+      <tr id="day8">
+        <td>2</td>
+        <td>
+          Nov 12–18<br>(Days 8–14)
+          <div class="daychips" data-range="8-14"></div>
+        </td>
+        <td>Curiosity / Telescope</td>
+        <td class="anchor"><a class="bon" data-interlude="janet">🌙 Janet Planet</a></td>
+        <td>
+          <a href="#notes" class="bon overlay-link" data-days="10,11">❄️ Bon Iver</a>
+          <span class="watchmen">Day 10–11 — Winter reflection</span>
+        </td>
+      </tr>
+      <tr id="day15">
+        <td>3</td>
+        <td>
+          Nov 19–25<br>(Days 15–21)
+          <div class="daychips" data-range="15-21"></div>
+        </td>
+        <td>Chaos calibration</td>
+        <td class="anchor"><a class="aphex" data-interlude="doechii">🔥 Doechii</a></td>
+        <td>
+          <a href="#notes" class="aphex overlay-link" data-days="18,19">🎧 Aphex Twin</a>
+          <span class="watchmen">Day 18–19 — Alien disruption</span>
+        </td>
+      </tr>
+      <tr id="day22">
+        <td>4</td>
+        <td>
+          Nov 26–Dec 2<br>(Days 22–28)
+          <div class="daychips" data-range="22-28"></div>
+        </td>
+        <td>Identity spotlight</td>
+        <td class="anchor"><a class="bon" data-interlude="emma">☀️ Emma Stone</a></td>
+        <td>
+          <a href="#notes" class="mosq overlay-link" data-days="28">🦟 Mosquito</a>
+          <span class="watchmen">Day 28 — Micro-trickster spark</span>
+        </td>
+      </tr>
+      <tr id="day29">
+        <td>5</td>
+        <td>
+          Dec 3–9<br>(Days 29–35)
+          <div class="daychips" data-range="29-35"></div>
+        </td>
+        <td>Collective joy</td>
+        <td class="anchor"><a class="bon" data-interlude="h2g">🐝 Hot To Go!</a></td>
+        <td></td>
+      </tr>
+      <tr id="day36">
+        <td>6</td>
+        <td>
+          Dec 10–17<br>(Days 36–42)
+          <div class="daychips" data-range="36-42"></div>
+        </td>
+        <td>Victory Song</td>
+        <td class="anchor"><a class="aphex" data-interlude="eminem">⚡ Eminem</a></td>
+        <td>
+          <a href="#notes" class="aphex overlay-link" data-days="39">🎧 Aphex Twin</a>
+          <span class="watchmen">Optional echo — counterpoint</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-      <div class="grid" style="margin-top:18px">
-        <div class="card col-6">
-          <div class="head"><span class="dot"></span><h3 style="margin:0">How to use this site</h3></div>
-          <p>Click any node → jumps to its Pantheon/Watchmen card and highlights it. Copy/paste the URL to deep‑link (e.g., <code>#pantheon-sabrina</code>).</p>
-        </div>
-        <div class="card col-6">
-          <div class="head"><span class="dot" style="background:var(--honey);"></span><h3 style="margin:0">Notes</h3></div>
-          <ul style="margin:0 0 0 1rem; padding:0 0 0 1rem">
-            <li>Positions are approximate — we can fine‑tune coordinates anytime.</li>
-            <li>Reduced motion disables spin/float for accessibility.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+  <section class="notes" id="notes">
+    <h2>Moon Notes</h2>
+    <div class="row">
+      <label for="dayInput">Day #</label>
+      <input id="dayInput" type="number" min="1" max="42" step="1" style="width:90px" />
+    </div>
+    <p>Write and save your Moon notes here. Saved locally in your browser.</p>
+    <textarea id="moonNote" placeholder="Write your Moon note…"></textarea>
+    <div class="controls">
+      <button class="btn" id="save">Save</button>
+      <button class="btn" id="clear">Clear</button>
+      <a class="btn" id="toTunes">Open Tunes</a>
+      <a class="btn" id="toArchive">Open Archive</a>
+      <a class="btn" id="toSeeds">Open Seeds</a>
+      <a class="btn" id="toBuild">Build Docs</a>
+      <a class="btn" id="toScience">Science 1/7</a>
+    </div>
+    <div id="savedNotes"></div>
+  </section>
 
-    <!-- Pantheon -->
-    <section id="pantheon" class="section">
-      <div class="head"><span class="dot"></span><h2 style="margin:0">Pantheon — Core Six</h2></div>
-      <div class="grid">
-        <div class="card col-4" id="card-pantheon-sabrina"><h3>🍯 Sabrina</h3><p>Taste spark. Honey as portal. Body‑forward magnetism.</p><div class="chip h">Sun–Bee balance</div></div>
-        <div class="card col-4" id="card-pantheon-janet"><h3>🌙 Janet Planet</h3><p>Cosmic teacher, telescope motif. STEAM curiosity anchor.</p><div class="chip">Moon scholar</div></div>
-        <div class="card col-4" id="card-pantheon-eminem"><h3>⚡ Eminem</h3><p>Victory Song / confrontation flare. Anthemic ignition.</p><div class="chip" style="color:var(--danger)">Sun flare</div></div>
-        <div class="card col-4" id="card-pantheon-emma"><h3>☀️ Emma Stone</h3><p>Cinematic identity. Masks / roles / spotlight.</p><div class="chip">Sun identity</div></div>
-        <div class="card col-4" id="card-pantheon-doechii"><h3>🔥 Doechii</h3><p>Trickster chaos. Neon splashes, playful disruption.</p><div class="chip">Chaos vector</div></div>
-        <div class="card col-4" id="card-pantheon-h2g"><h3>🐝 Hot To Go!</h3><p>Collective joy. Dancefloor swarm, glitter pollen.</p><div class="chip">Bee swarm</div></div>
-      </div>
-    </section>
-
-    <!-- Watchmen -->
-    <section id="watchmen" class="section">
-      <div class="head"><span class="dot" style="background:var(--neon2);"></span><h2 style="margin:0">Watchmen — Orbiting Ring</h2></div>
-      <div class="grid">
-        <div class="card col-4" id="card-watchmen-aphex">
-          <h3>🎧 Aphex Twin</h3>
-          <p><strong>Role:</strong> Disruptor. <span class="k">Sun:</span> abrasive identity shocks. <span class="chip">Bee:</span> meticulous micro‑layers. <span class="m">Moon:</span> algorithmic detachment.</p>
-          <p class="tag">Closest to Doechii / Eminem</p>
-        </div>
-        <div class="card col-4" id="card-watchmen-bon">
-          <h3>❄️ Bon Iver</h3>
-          <p><strong>Role:</strong> Healer. <span class="k">Sun:</span> vulnerability flare. <span class="chip">Bee:</span> loop textures. <span class="m">Moon:</span> seasonal memory.</p>
-          <p class="tag">Closest to Emma / Sabrina</p>
-        </div>
-        <div class="card col-4" id="card-watchmen-mosquito">
-          <h3>🦟 Mosquito</h3>
-          <p><strong>Role:</strong> Micro‑trickster. <span class="k">Bee:</span> hidden pollinator + food web. <span class="m">Moon:</span> disease archivist. <span class="chip">Sun:</span> confrontation spark.</p>
-          <p class="tag">Between Doechii (chaos) and Bee (ecology)</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Cycles -->
-    <section id="cycles" class="section">
-      <div class="head"><span class="dot" style="background:var(--green);"></span><h2 style="margin:0">Cycles — 42‑Day Illumina</h2></div>
-      <div class="card">
-        <p>Each Illumina = 42 days anchored to a full moon. Use this table as a placeholder for Illumina 1 (Nov 5 – Dec 17, 2025). Replace with live data later.</p>
-        <table aria-label="Illumina weekcards">
-          <thead><tr><th>Week</th><th>Days</th><th>Theme</th><th>Interludes</th></tr></thead>
-          <tbody>
-            <tr><td>1</td><td>1–7</td><td>Honey / Taste ignition</td><td>Sabrina</td></tr>
-            <tr><td>2</td><td>8–14</td><td>Curiosity / Telescope</td><td>Janet Planet</td></tr>
-            <tr><td>3</td><td>15–21</td><td>Chaos calibration</td><td>Doechii</td></tr>
-            <tr><td>4</td><td>22–28</td><td>Identity spotlight</td><td>Emma Stone</td></tr>
-            <tr><td>5</td><td>29–35</td><td>Collective joy</td><td>Hot To Go!</td></tr>
-            <tr><td>6</td><td>36–42</td><td>Victory Song</td><td>Eminem</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- Seeds / Recipes -->
-    <section id="seeds" class="section">
-      <div class="head"><span class="dot" style="background:var(--honey);"></span><h2 style="margin:0">Seeds & Recipes — Reference</h2></div>
-      <div class="grid">
-        <div class="card col-6">
-          <h3>Seed Tips (placeholder)</h3>
-          <ul style="margin:0 0 0 1rem; padding:0 0 0 1rem">
-            <li>One‑seed protocol before bed → log a Moon note on waking.</li>
-            <li>Pair with honey for taste ignition; avoid stacking unknowns.</li>
-            <li>Smoke timing = separate window if testing sensitivity.</li>
-          </ul>
-        </div>
-        <div class="card col-6">
-          <h3>Quick Recipe Blocks</h3>
-          <table aria-label="recipe table">
-            <thead><tr><th>Combo</th><th>When</th><th>Notes</th></tr></thead>
-            <tbody>
-              <tr><td>Cosmic apple seed + honey</td><td>Pre‑sleep</td><td>Chew or swallow (one), observe dreams.</td></tr>
-              <tr><td>Royal orange seed + movie</td><td>Evening</td><td>Light snack; avoid overstim late.</td></tr>
-              <tr><td>Gala seed + walk</td><td>Morning</td><td>Low‑intensity movement; log clarity.</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="shell">Made with ☀️🐝🌙 — constellation.plnt.earth • also serves at jar.plnt.earth/constellation</footer>
+  <footer style="text-align:center;font-size:14px;color:#98a2b3;margin-bottom:30px">Jar • Illumina Constellation Overlay</footer>
 
   <script>
-    // Tabs
     (function(){
-      var tabs = document.querySelectorAll('.tab');
-      var sections = document.querySelectorAll('.section');
-      function show(id){ sections.forEach(function(s){ s.classList.toggle('active', s.id === id); }); tabs.forEach(function(t){ t.setAttribute('aria-selected', t.dataset.target === id ? 'true' : 'false'); }); }
-      tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.target); }); });
-      function syncHash(){ var hash = location.hash.replace('#',''); if(!hash){ show('home'); return; }
-        // deep link logic
-        if(hash.startsWith('pantheon-')){ show('pantheon'); focusCard('pantheon', hash.split('pantheon-')[1]); }
-        else if(hash.startsWith('watchmen-')){ show('watchmen'); focusCard('watchmen', hash.split('watchmen-')[1]); }
-        else { if(document.getElementById(hash)) show(hash); }
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+};
+      try {
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}'); } catch(e) {
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+      function setHref(id, url){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+} }
+      setHref('navJar', cfg.jarHome || '/');
+      setHref('navTunes', cfg.tunes || 'https://tunes.plnt.earth/');
+      setHref('navArchive', cfg.archive || '/archive/');
+      setHref('navSeeds', cfg.seeds || '/reference/seeds/');
+      setHref('navBuild', cfg.build || '/build/');
+      setHref('navScience', cfg.science_1_7 || '/science/time-1-7/');
+      setHref('toTunes', cfg.tunes);
+      setHref('toArchive', cfg.archive);
+      setHref('toSeeds', cfg.seeds);
+      setHref('toBuild', cfg.build);
+      setHref('toScience', cfg.science_1_7);
+
+      // Interlude links in the Anchor column
+      document.querySelectorAll('[data-interlude]').forEach(function(a){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+})[key] || '';
+        if(url){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+} }
+      });
+
+      // Day chips → generate links ?day=X#notes
+      function makeChips(el){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+});
+        if(range.length!==2) return;
+        var s = range[0], e = range[1];
+        for(var d=s; d<=e; d++){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
       }
-      window.addEventListener('hashchange', syncHash); syncHash();
-      function focusCard(section, key){ var id = 'card-' + section + '-' + key; var el = document.getElementById(id); if(!el) return; el.classList.remove('pulse'); void el.offsetWidth; el.classList.add('pulse'); el.scrollIntoView({behavior:'smooth', block:'center'}); }
-    })();
+      document.querySelectorAll('.daychips').forEach(makeChips);
 
-    // Parallax background (mouse + scroll)
-    (function(){
-      var layers = document.querySelectorAll('.space .layer');
-      function move(e){ var w = innerWidth, h = innerHeight; var x = (e.clientX || w/2) / w - 0.5; var y = (e.clientY || h/2) / h - 0.5; layers.forEach(function(el){ var d = parseFloat(el.getAttribute('data-depth')) || 0.1; el.style.transform = 'translate(' + (-x*d*60) + 'px,' + (-y*d*60) + 'px)'; }); }
-      addEventListener('mousemove', move);
-      addEventListener('touchmove', function(ev){ if(ev.touches && ev.touches[0]) move(ev.touches[0]); }, {passive:true});
-      addEventListener('scroll', function(){ var s = scrollY; layers.forEach(function(el){ var d = parseFloat(el.getAttribute('data-depth')) || 0.1; el.style.transform = 'translateY(' + (-s*d*0.3) + 'px)'; }); }, {passive:true});
-    })();
+      // Notes persistence (per-day), shared key so it can unify later
+      var LS_KEY = 'jar_constellation_moon_notes';
+      var ta = document.getElementById('moonNote');
+      var saveBtn = document.getElementById('save');
+      var clearBtn = document.getElementById('clear');
+      var savedDiv = document.getElementById('savedNotes');
+      var dayInput = document.getElementById('dayInput');
 
-    // 3D tilt for the map
-    (function(){
-      var map = document.getElementById('map'); var tilt = document.getElementById('mapTilt'); if(!map || !tilt) return; var rect;
-      function onEnter(){ rect = map.getBoundingClientRect(); }
-      function onMove(e){ var x = (e.clientX - rect.left) / rect.width - 0.5; var y = (e.clientY - rect.top) / rect.height - 0.5; var rx = y * 6; var ry = -x * 6; tilt.style.transform = 'rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)'; }
-      function onLeave(){ tilt.style.transform = 'rotateX(0deg) rotateY(0deg)'; }
-      map.addEventListener('mouseenter', onEnter); map.addEventListener('mousemove', onMove); map.addEventListener('mouseleave', onLeave);
-      map.addEventListener('touchstart', function(){ onEnter(); }, {passive:true});
-      map.addEventListener('touchmove', function(ev){ if(ev.touches && ev.touches[0]) onMove(ev.touches[0]); }, {passive:true});
-      map.addEventListener('touchend', onLeave);
-    })();
+      function load(){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}catch(e){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+} }
+      function saveAll(rows){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+      function render(){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
 
-    // Detect host for dual‑home messaging if needed
-    (function(){
-      var host = location.host;
-      if(host.includes('jar.plnt.earth')){
-        document.title = 'Illumina Constellation — jar.plnt.earth/constellation';
+      function onSave(){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+};
+        var idx=rows.findIndex(function(x){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+});
+        if(idx>=0) rows[idx]=r; else rows.push(r);
+        saveAll(rows); render();
       }
+      function onClear(){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}
+
+      function focusNotes(d){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}); ta.classList.remove('pulse'); void ta.offsetWidth; ta.classList.add('pulse'); }
+
+      document.querySelectorAll('.overlay-link').forEach(function(a){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+}); });
+
+      // Support deep links ?day=18#notes
+      (function(){
+  "jarHome": "/",
+  "tunes": "https://tunes.plnt.earth/",
+  "interludes": {
+    "sabrina": "/interludes/sabrina/",
+    "janet": "/interludes/janet-planet/",
+    "doechii": "/interludes/doechii/",
+    "emma": "/interludes/emma-stone/",
+    "h2g": "/interludes/hot-to-go/",
+    "eminem": "/interludes/eminem/"
+  },
+  "archive": "/archive/",
+  "seeds": "/reference/seeds/",
+  "build": "/build/",
+  "science_1_7": "/science/time-1-7/"
+} })();
+
+      saveBtn.addEventListener('click',onSave);
+      clearBtn.addEventListener('click',onClear);
+      render();
     })();
   </script>
 </body>
